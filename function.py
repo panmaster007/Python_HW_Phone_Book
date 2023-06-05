@@ -12,8 +12,8 @@ def input_info(file_name: str):
                 record_id = line.split(';', 1)[0]
         print('Введите ФИО и телефон через пробел')
         line = f'{int(record_id) + 1};' + ';'.join(input().split()[:4]) + ';\n'
-        confirm = confirmation('добавить ')
-        if confirm == 'y':
+        confirm = confirmation('добавить')
+        if confirm == 'д':
             data.write(line)
 
 def find_zadanie():
@@ -59,10 +59,10 @@ def check_id_record(file_name: str, text: str):
     return decision
 
 def confirmation(text: str):
-    confirm = input(f"Подтвердите {text} запись: y - yes, n - no\n")
-    while confirm not in ('y', 'n'):
+    confirm = input(f"Подтвердите {text} запись: д - да, н - нет\n")
+    while confirm not in ('д', 'н'):
         print('Неверные данные')
-        confirm = input(f"Подтвердите {text} запись: y - yes, n - no\n")
+        confirm = input(f"Подтвердите {text} запись: д - да, н - нет\n")
     return confirm
 
 def replace_record_line(file_name: str, record_id, replaced_line: str):
@@ -81,12 +81,12 @@ def change_records(file_name: str):
         replaced_line = f'{int(record_id)};' + ';'.join(
             input('Введите ФИО и телефон через пробел\n').split()[:4]) + ';\n'
         confirm = confirmation('изменение')
-        if confirm == 'y':
+        if confirm == 'д':
             replace_record_line(file_name, record_id, replaced_line)
 
 def delete_records(file_name: str):
     record_id = check_id_record(file_name, 'удаление')
     if record_id != '9':
         confirm = confirmation('изменение')
-        if confirm == 'y':
+        if confirm == 'д':
             replace_record_line(file_name, record_id, '')
